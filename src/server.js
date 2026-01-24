@@ -1,6 +1,7 @@
 import express from 'express';
 import 'dotenv/config';
 import cors from 'cors';
+import { errors as celebrateErrors } from 'celebrate';
 
 import { connectMongoDB } from './db/connectMongoDB.js';
 import { logger } from './middleware/logger.js';
@@ -16,6 +17,8 @@ app.use(express.json({ limit: '5mb' }));
 app.use(cors());
 
 app.use(notesRoutes);
+
+app.use(celebrateErrors());
 
 app.use(notFoundHandler);
 
